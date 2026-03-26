@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>From Clicks to Check-Ins Dashboard | Pau Analytics Dashboard</title>
+  <link rel="canonical" href="https://www.pauanalytics.com/dashboard/from-clicks-to-check-ins.html" />
+  <meta name="description" content="" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <style>
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #FCF9F2 0%, #F5F0E8 100%);
+            color: #403B36;
+            min-height: 100vh;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #403B36 0%, #2C2822 100%);
+            color: #FCF9F2;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #CBA135 0%, #B8903A 100%);
+            color: #403B36;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(203, 161, 53, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid #CBA135;
+            color: #FCF9F2;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(203, 161, 53, 0.1);
+        }
+
+        /* Page Navigation */
+        .page-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .page-nav button {
+            padding: 12px 24px;
+            border: none;
+            background: white;
+            color: #403B36;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .page-nav button.active {
+            background: linear-gradient(135deg, #CBA135 0%, #B8903A 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(203, 161, 53, 0.3);
+        }
+
+        .page-nav button:hover:not(.active) {
+            background: #F5F1E8;
+        }
+
+        /* Dashboard Page */
+        .dashboard-page {
+            display: none;
+        }
+
+        .dashboard-page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .kpi-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+        }
+
+        .kpi-label {
+            font-size: 0.9rem;
+            color: #7A7570;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #403B36;
+            margin-bottom: 5px;
+        }
+
+        .kpi-subtext {
+            font-size: 0.85rem;
+            color: #2ECC71;
+        }
+
+        .kpi-subtext.negative {
+            color: #E74C3C;
+        }
+
+        /* Chart Grid */
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .chart-container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .chart-container.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .chart-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #403B36;
+            border-bottom: 3px solid #CBA135;
+            padding-bottom: 10px;
+        }
+
+        canvas {
+            max-height: 400px;
+        }
+
+        /* Table */
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: linear-gradient(135deg, #403B36 0%, #2C2822 100%);
+            color: #CBA135;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #E5DED0;
+        }
+
+        tr:hover {
+            background: #FCF9F2;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #7A7570;
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2rem;
+            color: #7A7570;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+    /* Override old layout */
+    .left-column { display: none !important; }
+    .right-column { margin-left: 0 !important; width: 100% !important; }
+    .container { display: block; }
+  </style>
+</head>
+<body>
+
+<div class="sticky-header">
+  <div class="navbar">
+    <div class="nav-brand">Pau <span>Analytics</span></div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../data-analytics.html" class="active">Case Studies</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero-medium">
+  <div class="container">
+    <span class="section-tag">Interactive Dashboard</span>
+    <h1 style="margin-top:0.75rem;">From Clicks to Check-Ins Dashboard</h1>
+  </div>
+</section>
+
+<!-- DASHBOARD CONTENT -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="dashboard-container">
+        <!-- Header -->
+        </div>
+        <!-- Page Navigation -->
+        <div class="page-nav">
+            <button class="active" onclick="showPage(1)">Overview</button>
+            <button onclick="showPage(2)">Channel Performance</button>
+            <button onclick="showPage(3)">Trends</button>
+            <button onclick="showPage(4)">Destination Analysis</button>
+        </div>
+
+        <!-- Loading -->
+        <div id="loading" class="loading">Loading dashboard data...</div>
+
+        <!-- Page 1: Overview -->
+        <div id="page1" class="dashboard-page active" style="display: none;">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Searches</div>
+                    <div class="kpi-value" id="totalSearches">-</div>
+                    <div class="kpi-subtitle">All search activities</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Bookings</div>
+                    <div class="kpi-value" id="totalBookings">-</div>
+                    <div class="kpi-subtitle">Successful conversions</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Conversion Rate</div>
+                    <div class="kpi-value" id="conversionRate">-</div>
+                    <div class="kpi-subtitle">Bookings / Searches</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Avg Lead Time</div>
+                    <div class="kpi-value" id="avgLeadTime">-</div>
+                    <div class="kpi-subtitle">Days before check-in</div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Searches by Channel</div>
+                    <div class="chart-wrapper">
+                        <canvas id="channelPieChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Bookings vs Searches by Device</div>
+                    <div class="chart-wrapper">
+                        <canvas id="deviceStackedChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-title">Top 5 Channels by Conversion Rate</div>
+                <div class="chart-wrapper">
+                    <canvas id="topChannelsChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2: Channel Performance -->
+        <div id="page2" class="dashboard-page">
+            <div class="table-container">
+                <div class="chart-title">Channel Performance Table</div>
+                <table id="channelTable">
+                    <thead>
+                        <tr>
+                            <th>Channel</th>
+                            <th>Searches</th>
+                            <th>Bookings</th>
+                            <th>Conversion Rate</th>
+                            <th>Avg Adults</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Conversion Rate by Channel</div>
+                    <div class="chart-wrapper">
+                        <canvas id="channelConversionChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Booking Rate by Package Type</div>
+                    <div class="chart-wrapper">
+                        <canvas id="packageTypeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 3: Trends -->
+        <div id="page3" class="dashboard-page">
+            <div class="chart-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Searches Over Time</div>
+                    <div class="chart-wrapper">
+                        <canvas id="searchesTrendChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Conversion Rate Trend</div>
+                    <div class="chart-wrapper">
+                        <canvas id="conversionTrendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Mobile Usage Trend</div>
+                    <div class="chart-wrapper">
+                        <canvas id="mobileUsageTrendChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Searches by Lead Time Category</div>
+                    <div class="chart-wrapper">
+                        <canvas id="leadTimeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 4: Destination Analysis -->
+        <div id="page4" class="dashboard-page">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Unique Destinations</div>
+                    <div class="kpi-value" id="uniqueDestinations">-</div>
+                    <div class="kpi-subtitle">Total destinations searched</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Avg Distance</div>
+                    <div class="kpi-value" id="avgDistance">-</div>
+                    <div class="kpi-subtitle">Kilometers</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Avg Party Size</div>
+                    <div class="kpi-value" id="avgPartySize">-</div>
+                    <div class="kpi-subtitle">Travelers per search</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Avg Stay Duration</div>
+                    <div class="kpi-value" id="avgStayDuration">-</div>
+                    <div class="kpi-subtitle">Nights</div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Top 10 Destinations by Search Volume</div>
+                    <div class="chart-wrapper">
+                        <canvas id="topDestinationsChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Bookings by Hotel Continent</div>
+                    <div class="chart-wrapper">
+                        <canvas id="continentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2025 Pau Analytics | Data-Driven Solutions</p>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-gold cta-strip">
+  <div class="container">
+    <h2>Want This Kind of Analysis for Your Business?</h2>
+    <p>Tell us the question you're trying to answer. We'll tell you what's possible.</p>
+    <a href="../contact.html" class="btn btn-dark">Start a Conversation</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand-name">Pau <span>Analytics</span></div>
+      <p class="tagline">"Every decision deserves better data."</p>
+      <p>Data analytics consulting for Malaysian SMEs — reports, dashboards, and AI assistants.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Work</h5>
+      <ul>
+        <li><a href="../data-analytics.html">Case Studies</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../faq.html">FAQ</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="https://lyven81.github.io/pau-ai/" target="_blank">Pau AI ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Pau Analytics</span>
+    <span><a href="../privacy-policy.html">Privacy Policy</a></span>
+  </div>
+</footer>
+
+<script>
+        // Global data variable
+        let dashboardData = [];
+
+        // Color schemes
+        const colors = {
+            primary: ['#CBA135', '#B8952F', '#A58229', '#926F23', '#7F5C1D'],
+            extended: ['#CBA135', '#8B7355', '#E5C185', '#6B5644', '#D4AF6F', '#9B8467', '#F0D4A3', '#5A4738', '#C19F5E', '#7A6952'],
+            devices: {
+                'Desktop': '#CBA135',
+                'Mobile': '#7A7570'
+            },
+            packages: {
+                'Package': '#CBA135',
+                'Non-Package': '#7A7570'
+            }
+        };
+
+        // Page navigation
+        function showPage(pageNum) {
+            // Hide all pages
+            document.querySelectorAll('.dashboard-page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            document.querySelectorAll('.page-nav button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected page
+            document.getElementById('page' + pageNum).classList.add('active');
+
+            // Add active class to clicked button
+            document.querySelectorAll('.page-nav button')[pageNum - 1].classList.add('active');
+        }
+
+        // Load CSV data
+        async function loadData() {
+            const csvUrl = 'https://raw.githubusercontent.com/lyven81/pinnacles-learning-website/main/dashboard/data/from-clicks-to-check-ins.csv';
+
+            try {
+                const response = await fetch(csvUrl);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                const csvText = await response.text();
+
+                Papa.parse(csvText, {
+                    header: true,
+                    dynamicTyping: true,
+                    complete: function(results) {
+                        dashboardData = results.data.filter(row => row.user_id); // Filter out empty rows
+                        console.log('Data loaded:', dashboardData.length, 'rows');
+                        initializeDashboard();
+                    },
+                    error: function(error) {
+                        console.error('Parse error:', error);
+                        document.getElementById('loading').textContent = 'Error loading data. Please refresh the page.';
+                    }
+                });
+            } catch (error) {
+                console.error('Fetch error:', error);
+                document.getElementById('loading').textContent = 'Error loading data. Please check your connection.';
+            }
+        }
+
+        // Initialize dashboard
+        function initializeDashboard() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('page1').style.display = 'block';
+
+            // Page 1: Overview
+            updateOverviewKPIs();
+            createChannelPieChart();
+            createDeviceStackedChart();
+            createTopChannelsChart();
+
+            // Page 2: Channel Performance
+            populateChannelTable();
+            createChannelConversionChart();
+            createPackageTypeChart();
+
+            // Page 3: Trends
+            createSearchesTrendChart();
+            createConversionTrendChart();
+            createMobileUsageTrendChart();
+            createLeadTimeChart();
+
+            // Page 4: Destination Analysis
+            updateDestinationKPIs();
+            createTopDestinationsChart();
+            createContinentChart();
+        }
+
+        // Page 1 Functions
+        function updateOverviewKPIs() {
+            const totalSearches = dashboardData.length;
+            const totalBookings = dashboardData.filter(d => d.is_booking === 1).length;
+            const conversionRate = ((totalBookings / totalSearches) * 100).toFixed(2);
+            const avgLeadTime = (dashboardData.reduce((sum, d) => sum + (d.lead_time_days || 0), 0) / totalSearches).toFixed(0);
+
+            document.getElementById('totalSearches').textContent = totalSearches.toLocaleString();
+            document.getElementById('totalBookings').textContent = totalBookings.toLocaleString();
+            document.getElementById('conversionRate').textContent = conversionRate + '%';
+            document.getElementById('avgLeadTime').textContent = avgLeadTime + ' days';
+        }
+
+        function createChannelPieChart() {
+            const channelCounts = {};
+            dashboardData.forEach(d => {
+                const channel = 'Channel ' + (d.channel || 0);
+                channelCounts[channel] = (channelCounts[channel] || 0) + 1;
+            });
+
+            const topChannels = Object.entries(channelCounts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 8);
+
+            const ctx = document.getElementById('channelPieChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: topChannels.map(c => c[0]),
+                    datasets: [{
+                        data: topChannels.map(c => c[1]),
+                        backgroundColor: colors.extended,
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                padding: 10,
+                                font: {
+                                    family: 'Poppins',
+                                    size: 11
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((context.parsed / total) * 100).toFixed(1);
+                                    return context.label + ': ' + percentage + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createDeviceStackedChart() {
+            const deviceStats = {
+                'Desktop': { searches: 0, bookings: 0 },
+                'Mobile': { searches: 0, bookings: 0 }
+            };
+
+            dashboardData.forEach(d => {
+                const device = d.is_mobile === 1 ? 'Mobile' : 'Desktop';
+                deviceStats[device].searches++;
+                if (d.is_booking === 1) {
+                    deviceStats[device].bookings++;
+                }
+            });
+
+            const ctx = document.getElementById('deviceStackedChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Desktop', 'Mobile'],
+                    datasets: [
+                        {
+                            label: 'Searches',
+                            data: [deviceStats['Desktop'].searches, deviceStats['Mobile'].searches],
+                            backgroundColor: colors.primary[0],
+                            borderRadius: 6
+                        },
+                        {
+                            label: 'Bookings',
+                            data: [deviceStats['Desktop'].bookings, deviceStats['Mobile'].bookings],
+                            backgroundColor: colors.primary[2],
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    family: 'Poppins',
+                                    size: 12
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true
+                        },
+                        y: {
+                            stacked: true,
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Count'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createTopChannelsChart() {
+            const channelStats = {};
+            dashboardData.forEach(d => {
+                const channel = 'Channel ' + (d.channel || 0);
+                if (!channelStats[channel]) {
+                    channelStats[channel] = { searches: 0, bookings: 0 };
+                }
+                channelStats[channel].searches++;
+                if (d.is_booking === 1) {
+                    channelStats[channel].bookings++;
+                }
+            });
+
+            const channelRates = Object.entries(channelStats)
+                .map(([channel, stats]) => ({
+                    channel,
+                    rate: (stats.bookings / stats.searches * 100).toFixed(2)
+                }))
+                .sort((a, b) => b.rate - a.rate)
+                .slice(0, 5);
+
+            const ctx = document.getElementById('topChannelsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: channelRates.map(c => c.channel),
+                    datasets: [{
+                        label: 'Conversion Rate (%)',
+                        data: channelRates.map(c => c.rate),
+                        backgroundColor: colors.primary,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Conversion Rate (%)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Page 2 Functions
+        function populateChannelTable() {
+            const channelStats = {};
+            dashboardData.forEach(d => {
+                const channel = d.channel || 0;
+                if (!channelStats[channel]) {
+                    channelStats[channel] = {
+                        searches: 0,
+                        bookings: 0,
+                        totalAdults: 0
+                    };
+                }
+                channelStats[channel].searches++;
+                channelStats[channel].totalAdults += (d.srch_adults_cnt || 0);
+                if (d.is_booking === 1) {
+                    channelStats[channel].bookings++;
+                }
+            });
+
+            const tbody = document.querySelector('#channelTable tbody');
+            tbody.innerHTML = '';
+
+            Object.entries(channelStats)
+                .sort((a, b) => b[1].searches - a[1].searches)
+                .slice(0, 10)
+                .forEach(([channel, stats]) => {
+                    const row = tbody.insertRow();
+                    row.innerHTML = `
+                        <td>Channel ${channel}</td>
+                        <td>${stats.searches}</td>
+                        <td>${stats.bookings}</td>
+                        <td>${(stats.bookings / stats.searches * 100).toFixed(2)}%</td>
+                        <td>${(stats.totalAdults / stats.searches).toFixed(1)}</td>
+                    `;
+                });
+        }
+
+        function createChannelConversionChart() {
+            const channelStats = {};
+            dashboardData.forEach(d => {
+                const channel = 'Ch ' + (d.channel || 0);
+                if (!channelStats[channel]) {
+                    channelStats[channel] = { searches: 0, bookings: 0 };
+                }
+                channelStats[channel].searches++;
+                if (d.is_booking === 1) {
+                    channelStats[channel].bookings++;
+                }
+            });
+
+            const channelRates = Object.entries(channelStats)
+                .map(([channel, stats]) => ({
+                    channel,
+                    rate: (stats.bookings / stats.searches * 100).toFixed(2)
+                }))
+                .sort((a, b) => b.rate - a.rate)
+                .slice(0, 10);
+
+            const ctx = document.getElementById('channelConversionChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: channelRates.map(c => c.channel),
+                    datasets: [{
+                        label: 'Conversion Rate (%)',
+                        data: channelRates.map(c => c.rate),
+                        backgroundColor: channelRates.map((c, i) => colors.extended[i % colors.extended.length]),
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Conversion Rate (%)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createPackageTypeChart() {
+            const packageStats = {
+                'Package': { searches: 0, bookings: 0 },
+                'Non-Package': { searches: 0, bookings: 0 }
+            };
+
+            dashboardData.forEach(d => {
+                const packageType = d.package_type || 'Non-Package';
+                packageStats[packageType].searches++;
+                if (d.is_booking === 1) {
+                    packageStats[packageType].bookings++;
+                }
+            });
+
+            const packageRates = Object.entries(packageStats).map(([type, stats]) => ({
+                type,
+                rate: (stats.bookings / stats.searches * 100).toFixed(2)
+            }));
+
+            const ctx = document.getElementById('packageTypeChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: packageRates.map(p => p.type),
+                    datasets: [{
+                        label: 'Conversion Rate (%)',
+                        data: packageRates.map(p => p.rate),
+                        backgroundColor: [colors.packages['Package'], colors.packages['Non-Package']],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Conversion Rate (%)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Page 3 Functions
+        function createSearchesTrendChart() {
+            const monthlySearches = {};
+            dashboardData.forEach(d => {
+                const month = d.search_year_month || '2013-01';
+                monthlySearches[month] = (monthlySearches[month] || 0) + 1;
+            });
+
+            const sortedMonths = Object.keys(monthlySearches).sort();
+
+            const ctx = document.getElementById('searchesTrendChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: sortedMonths,
+                    datasets: [{
+                        label: 'Total Searches',
+                        data: sortedMonths.map(m => monthlySearches[m]),
+                        borderColor: colors.primary[0],
+                        backgroundColor: colors.primary[0] + '20',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Searches'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createConversionTrendChart() {
+            const monthlyStats = {};
+            dashboardData.forEach(d => {
+                const month = d.search_year_month || '2013-01';
+                if (!monthlyStats[month]) {
+                    monthlyStats[month] = { searches: 0, bookings: 0 };
+                }
+                monthlyStats[month].searches++;
+                if (d.is_booking === 1) {
+                    monthlyStats[month].bookings++;
+                }
+            });
+
+            const sortedMonths = Object.keys(monthlyStats).sort();
+            const conversionRates = sortedMonths.map(m =>
+                (monthlyStats[m].bookings / monthlyStats[m].searches * 100).toFixed(2)
+            );
+
+            const ctx = document.getElementById('conversionTrendChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: sortedMonths,
+                    datasets: [{
+                        label: 'Conversion Rate (%)',
+                        data: conversionRates,
+                        borderColor: colors.primary[1],
+                        backgroundColor: colors.primary[1] + '20',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Conversion Rate (%)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createMobileUsageTrendChart() {
+            const monthlyDevice = {};
+            dashboardData.forEach(d => {
+                const month = d.search_year_month || '2013-01';
+                if (!monthlyDevice[month]) {
+                    monthlyDevice[month] = { total: 0, mobile: 0 };
+                }
+                monthlyDevice[month].total++;
+                if (d.is_mobile === 1) {
+                    monthlyDevice[month].mobile++;
+                }
+            });
+
+            const sortedMonths = Object.keys(monthlyDevice).sort();
+            const mobileRates = sortedMonths.map(m =>
+                (monthlyDevice[m].mobile / monthlyDevice[m].total * 100).toFixed(2)
+            );
+
+            const ctx = document.getElementById('mobileUsageTrendChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: sortedMonths,
+                    datasets: [{
+                        label: 'Mobile Usage Rate (%)',
+                        data: mobileRates,
+                        borderColor: colors.primary[2],
+                        backgroundColor: colors.primary[2] + '20',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Mobile Usage (%)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createLeadTimeChart() {
+            const leadTimeCounts = {};
+            dashboardData.forEach(d => {
+                const category = d.lead_time_category || 'Unknown';
+                leadTimeCounts[category] = (leadTimeCounts[category] || 0) + 1;
+            });
+
+            const categories = ['Last Minute (0-7 days)', 'Short Term (8-30 days)', 'Medium Term (31-90 days)', 'Long Term (>90 days)'];
+            const data = categories.map(c => leadTimeCounts[c] || 0);
+
+            const ctx = document.getElementById('leadTimeChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: categories,
+                    datasets: [{
+                        label: 'Number of Searches',
+                        data: data,
+                        backgroundColor: colors.primary,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Searches'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Page 4 Functions
+        function updateDestinationKPIs() {
+            const uniqueDestinations = new Set(dashboardData.map(d => d.srch_destination_id)).size;
+            const avgDistance = (dashboardData.reduce((sum, d) => sum + (d.orig_destination_distance || 0), 0) / dashboardData.length).toFixed(0);
+            const avgPartySize = (dashboardData.reduce((sum, d) => sum + (d.party_size || 0), 0) / dashboardData.length).toFixed(1);
+            const avgStayDuration = (dashboardData.reduce((sum, d) => sum + (d.stay_duration || 0), 0) / dashboardData.length).toFixed(1);
+
+            document.getElementById('uniqueDestinations').textContent = uniqueDestinations.toLocaleString();
+            document.getElementById('avgDistance').textContent = avgDistance + ' km';
+            document.getElementById('avgPartySize').textContent = avgPartySize;
+            document.getElementById('avgStayDuration').textContent = avgStayDuration;
+        }
+
+        function createTopDestinationsChart() {
+            const destCounts = {};
+            dashboardData.forEach(d => {
+                const dest = 'Dest ' + (d.srch_destination_id || 0);
+                destCounts[dest] = (destCounts[dest] || 0) + 1;
+            });
+
+            const topDests = Object.entries(destCounts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+
+            const ctx = document.getElementById('topDestinationsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: topDests.map(d => d[0]),
+                    datasets: [{
+                        label: 'Search Volume',
+                        data: topDests.map(d => d[1]),
+                        backgroundColor: colors.extended,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Searches'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createContinentChart() {
+            const continentNames = {
+                0: 'North America',
+                1: 'South America',
+                2: 'Europe',
+                3: 'Asia',
+                4: 'Africa',
+                5: 'Oceania',
+                6: 'Antarctica'
+            };
+
+            const continentBookings = {};
+            dashboardData.filter(d => d.is_booking === 1).forEach(d => {
+                const continent = continentNames[d.hotel_continent] || 'Unknown';
+                continentBookings[continent] = (continentBookings[continent] || 0) + 1;
+            });
+
+            const sortedContinents = Object.entries(continentBookings)
+                .sort((a, b) => b[1] - a[1]);
+
+            const ctx = document.getElementById('continentChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: sortedContinents.map(c => c[0]),
+                    datasets: [{
+                        label: 'Bookings',
+                        data: sortedContinents.map(c => c[1]),
+                        backgroundColor: colors.extended,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Bookings'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Load data on page load
+        window.addEventListener('DOMContentLoaded', loadData);
+    </script>
+
+</body>
+</html>

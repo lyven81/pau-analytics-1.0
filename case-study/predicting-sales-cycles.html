@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Predicting Sales Cycles | Pau Analytics</title>
+  <link rel="canonical" href="https://www.pauanalytics.com/case-study/predicting-sales-cycles.html" />
+  <meta name="description" content="How an e-commerce seller used time series analysis to predict seasonal sales patterns and optimize inventory planning" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .article-body { font-size: 1.05rem; color: var(--text); line-height: 1.85; max-width: 780px; }
+    .article-body p { margin-bottom: 1.25rem; }
+    .article-body h2 { font-size: 1.4rem; color: var(--brown); margin: 2rem 0 0.75rem; }
+    .article-body h3 { font-size: 1.15rem; color: var(--brown); margin: 1.5rem 0 0.6rem; }
+    .article-body ul, .article-body ol { margin: 0 0 1.25rem 1.5rem; }
+    .article-body li { margin-bottom: 0.5rem; line-height: 1.75; }
+    .article-body strong { color: var(--brown); }
+    .article-body img { max-width: 100%; border-radius: 8px; margin: 1.5rem 0; }
+  </style>
+</head>
+<body>
+
+<div class="sticky-header">
+  <div class="navbar">
+    <div class="nav-brand">Pau <span>Analytics</span></div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../data-analytics.html" class="active">Case Studies</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero-medium">
+  <div class="container">
+    <span class="section-tag">Inventory &amp; Forecasting</span>
+    <h1 style="margin-top:0.75rem;">Predicting Sales Cycles</h1>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<section class="section section-cream">
+  <div class="container">
+    <article class="article-body">
+      <section class="case-study-content">
+                <p>David ran an e-commerce business that sold everything from electronics to home goods. His biggest headache was inventory. Some weeks, sales surged and he ran out of stock. Other weeks, revenue dropped and his warehouse filled with products he couldn't sell. He was spending too much money during slow periods and losing revenue during busy ones. Every month felt like a gamble.</p>
+
+                <p>David hired a data analyst to figure out if his sales followed any pattern. The analyst studied two years of transaction data—34,500 orders with details on revenue, discounts, delivery times, and returns. The goal was simple: stop guessing when to buy stock and start knowing when sales would rise or fall.</p>
+
+                <p>The analyst found that David's sales followed clear seasonal cycles. Weekly revenue wasn't random—it repeated in predictable patterns. Some weeks were consistently strong, others consistently weak. The analyst broke David's sales history into three phases: Peak weeks, Moderate weeks, and Slow weeks. Out of 105 weeks analyzed, 32 were Peak, 41 were Moderate, and 32 were Slow.</p>
+
+                <p>The analyst built a forecasting model that explained 78% of David's revenue ups and downs. The model revealed something David suspected but never proved: seasonality drove everything. Peak Season weeks boosted revenue by RM8,430 on average compared to Moderate weeks. Slow Season weeks cut revenue by RM7,914. Time itself—whether it was early 2024 or late 2025—barely mattered. What mattered was the season.</p>
+
+                <p>The analyst tested the model on 21 weeks of unseen data to make sure it worked on future sales, not just past ones. The model captured the seasonal swings correctly. Peak weeks stayed high, Slow weeks stayed low, and Moderate weeks held steady. David now had proof that his sales cycles weren't just history—they were predictable going forward.</p>
+
+                <p>The analyst showed David what would happen if he ran promotions during Slow weeks. A typical Slow week brought in RM47,000. A Moderate week brought in RM55,000. A Peak week brought in RM63,000. If David could shift just one Slow week into Moderate territory with a well-timed promotion, he'd gain RM8,000. Shifting two weeks would add RM16,000. The numbers were clear: promotions during Slow weeks could smooth out his revenue dips.</p>
+
+                <p>David looked at past events too. He remembered a government subsidy program that temporarily boosted online shopping. The data confirmed it: during that event, his weekly revenue jumped to RM58,878, compared to RM55,726 before and RM55,029 after. The event gave him a RM3,000 lift—but only while it lasted. David realized these temporary boosts were tactical opportunities, not long-term growth drivers.</p>
+
+                <p>The baseline forecast showed stable revenue of RM54,000 to RM55,000 per week if nothing changed. The projection was flat because it averaged out the seasonal swings. David understood this was his planning floor—his worst-case scenario for cash flow. Actual results would spike higher during Peak weeks and drop lower during Slow weeks, but the baseline gave him a number he could count on.</p>
+
+                <p>David redesigned his business around these findings. He stocked up before Peak weeks, when demand reliably surged. He kept inventory lean during Slow weeks to avoid tying up cash. He scheduled his big marketing campaigns for Peak weeks, where the return on ad spend was strongest. He saved smaller, targeted promotions for Slow weeks to keep revenue from crashing too hard.</p>
+
+                <p>He also changed how he dealt with suppliers. Instead of ordering randomly throughout the year, David timed his bulk purchases to arrive just before Peak seasons. He negotiated payment terms that aligned with his cash flow cycles—paying suppliers after Peak weeks when he had more cash on hand. He stopped overstocking products that didn't move during Slow periods.</p>
+
+                <p>David tested different scenarios using the model. He simulated what would happen if he boosted marketing spend, or if a competitor launched a promotion, or if another government subsidy came through. The model gave him a range of outcomes for each scenario. He could plan for best-case and worst-case results instead of hoping for the best.</p>
+
+                <p>Today, David's inventory decisions are data-driven. He knows when to stock up and when to hold back. He knows when to push marketing hard and when to save his budget. He knows Peak weeks will add RM8,400 and Slow weeks will cut RM7,900. His cash flow is stable, his warehouse isn't overflowing, and he's not running out of stock during busy periods. The guesswork is gone—he runs his business on patterns, not panic.</p>
+            </section>
+    </article>
+  </div>
+</section>
+
+<!-- DASHBOARD & AI ASSISTANT -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Explore the Data</span>
+      <h2>Dashboard &amp; AI Assistant</h2>
+    </div>
+    <div style="background:var(--dark); border-radius:var(--radius); padding:2.5rem; text-align:center; max-width:700px; margin:0 auto;">
+      <h3 style="color:var(--white); margin-bottom:1rem;">Explore the interactive dashboard or ask the AI assistant your own questions.</h3>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="../dashboard/predicting-sales-cycles.html" class="btn btn-primary" target="_blank">View Dashboard →</a>
+        <a href="../agentic_workflow/predicting-sales-cycles.html" class="btn btn-outline" target="_blank" style="color:var(--white); border-color:rgba(255,255,255,0.3);">Open AI Assistant →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-gold cta-strip">
+  <div class="container">
+    <h2>Want This Kind of Analysis for Your Business?</h2>
+    <p>Tell us the question you're trying to answer. We'll tell you what's possible.</p>
+    <a href="../contact.html" class="btn btn-dark">Start a Conversation</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand-name">Pau <span>Analytics</span></div>
+      <p class="tagline">"Every decision deserves better data."</p>
+      <p>Data analytics consulting for Malaysian SMEs — reports, dashboards, and AI assistants.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Work</h5>
+      <ul>
+        <li><a href="../data-analytics.html">Case Studies</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../faq.html">FAQ</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="https://lyven81.github.io/pau-ai/" target="_blank">Pau AI ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Pau Analytics</span>
+    <span><a href="../privacy-policy.html">Privacy Policy</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

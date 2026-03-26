@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Predicting Holiday Peaks | Pau Analytics</title>
+  <link rel="canonical" href="https://www.pauanalytics.com/case-study/predicting-holiday-peaks.html" />
+  <meta name="description" content="How a retail mall marketing manager used streaming data to optimize Christmas campaign timing and reduce wasted ad spend during the holiday season" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .article-body { font-size: 1.05rem; color: var(--text); line-height: 1.85; max-width: 780px; }
+    .article-body p { margin-bottom: 1.25rem; }
+    .article-body h2 { font-size: 1.4rem; color: var(--brown); margin: 2rem 0 0.75rem; }
+    .article-body h3 { font-size: 1.15rem; color: var(--brown); margin: 1.5rem 0 0.6rem; }
+    .article-body ul, .article-body ol { margin: 0 0 1.25rem 1.5rem; }
+    .article-body li { margin-bottom: 0.5rem; line-height: 1.75; }
+    .article-body strong { color: var(--brown); }
+    .article-body img { max-width: 100%; border-radius: 8px; margin: 1.5rem 0; }
+  </style>
+</head>
+<body>
+
+<div class="sticky-header">
+  <div class="navbar">
+    <div class="nav-brand">Pau <span>Analytics</span></div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../data-analytics.html" class="active">Case Studies</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero-medium">
+  <div class="container">
+    <span class="section-tag">Marketing &amp; Campaigns</span>
+    <h1 style="margin-top:0.75rem;">Predicting Holiday Peaks</h1>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<section class="section section-cream">
+  <div class="container">
+    <article class="article-body">
+      <section class="case-study-content">
+                <p>Ahmad managed marketing for a retail mall in Kuala Lumpur with a RM300,000 Christmas campaign budget. Every November, he launched festive promotions featuring holiday music, decorations, and special events. He spread the budget evenly across eight weeks from mid-November to early January. But he had no idea when shoppers actually paid attention to Christmas content. He was guessing at timing and hoping crowds would show up.</p>
+
+                <p>Ahmad hired a data analyst to study when people started caring about Christmas. The analyst examined eight years of streaming data for popular Christmas songs from 2017 to 2025. The data tracked weekly streams for hits like "All I Want for Christmas Is You" and "Last Christmas." The goal was simple: find out when holiday interest started rising, when it peaked, and when it dropped off.</p>
+
+                <p>The data showed a clear pattern. From January to October, streams stayed near zero. Interest started rising in mid-November. The peak happened during weeks 50 to 52—the final three weeks of December leading up to Christmas. Right after New Year's, streams dropped sharply back to almost nothing. This pattern repeated every single year with remarkable consistency.</p>
+
+                <p>The analyst built a time-series model to confirm the findings. The model looked at trends across different tracks, artists, and years. It checked whether the pattern was reliable or just random noise. The results were solid. The seasonal pattern was 100% predictable. Mid-November always marked the start. Weeks 50-52 always delivered peak engagement. Early January always showed the drop-off.</p>
+
+                <p>Ahmad learned that classic Christmas hits dominated completely. Mariah Carey's track generated the highest streams year after year. Songs like "Jingle Bell Rock" and "Feliz Navidad" followed. These tracks had zero activity for most of the year, then exploded during the holiday window. Some songs had grown even more popular recently—Mariah Carey's December peaks in 2025 were much higher than in 2017.</p>
+
+                <p>The model revealed that weekly data was enough for planning. The dataset didn't show which specific days performed better, but that didn't matter. Ahmad could confidently plan campaign timing based on weekly patterns. He knew exactly which weeks deserved heavy spending and which weeks were a waste of money.</p>
+
+                <p>Ahmad restructured his entire campaign calendar. He shifted 60% of his budget to weeks 50-52, up from the previous 30%. He started warming up audiences in mid-November with lighter spending—about 20% of budget. He allocated only 10% to late November build-up. He cut spending completely in early January instead of dragging campaigns into the first week of the new year. The remaining 10% went to monitoring and adjustments.</p>
+
+                <p>Today, Ahmad launches Christmas campaigns in mid-November with modest investment, ramps up aggressively during the final three December weeks, and stops spending immediately after New Year's. He tracks which Christmas songs are trending upward each year and adjusts his mall's playlist and promotional content accordingly. He's not spreading money evenly across eight weeks anymore. The streaming data gave him a timing blueprint that repeats every year. His budget now follows real audience behavior, not guesswork.</p>
+            </section>
+    </article>
+  </div>
+</section>
+
+<!-- DASHBOARD & AI ASSISTANT -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Explore the Data</span>
+      <h2>Dashboard &amp; AI Assistant</h2>
+    </div>
+    <div style="background:var(--dark); border-radius:var(--radius); padding:2.5rem; text-align:center; max-width:700px; margin:0 auto;">
+      <h3 style="color:var(--white); margin-bottom:1rem;">Explore the interactive dashboard or ask the AI assistant your own questions.</h3>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="../dashboard/predicting-holiday-peaks.html" class="btn btn-primary" target="_blank">View Dashboard →</a>
+        <a href="../agentic_workflow/predicting-holiday-peaks.html" class="btn btn-outline" target="_blank" style="color:var(--white); border-color:rgba(255,255,255,0.3);">Open AI Assistant →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-gold cta-strip">
+  <div class="container">
+    <h2>Want This Kind of Analysis for Your Business?</h2>
+    <p>Tell us the question you're trying to answer. We'll tell you what's possible.</p>
+    <a href="../contact.html" class="btn btn-dark">Start a Conversation</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand-name">Pau <span>Analytics</span></div>
+      <p class="tagline">"Every decision deserves better data."</p>
+      <p>Data analytics consulting for Malaysian SMEs — reports, dashboards, and AI assistants.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Work</h5>
+      <ul>
+        <li><a href="../data-analytics.html">Case Studies</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../faq.html">FAQ</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="https://lyven81.github.io/pau-ai/" target="_blank">Pau AI ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Pau Analytics</span>
+    <span><a href="../privacy-policy.html">Privacy Policy</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

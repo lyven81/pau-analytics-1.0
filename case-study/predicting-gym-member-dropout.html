@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How a Gym Trainer Stopped Members from Quitting | Pau Analytics</title>
+  <link rel="canonical" href="https://www.pauanalytics.com/case-study/predicting-gym-member-dropout.html" />
+  <meta name="description" content="How a fitness trainer analyzed member behavior patterns to identify at-risk members and reduce gym dropout rates through timely intervention" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .article-body { font-size: 1.05rem; color: var(--text); line-height: 1.85; max-width: 780px; }
+    .article-body p { margin-bottom: 1.25rem; }
+    .article-body h2 { font-size: 1.4rem; color: var(--brown); margin: 2rem 0 0.75rem; }
+    .article-body h3 { font-size: 1.15rem; color: var(--brown); margin: 1.5rem 0 0.6rem; }
+    .article-body ul, .article-body ol { margin: 0 0 1.25rem 1.5rem; }
+    .article-body li { margin-bottom: 0.5rem; line-height: 1.75; }
+    .article-body strong { color: var(--brown); }
+    .article-body img { max-width: 100%; border-radius: 8px; margin: 1.5rem 0; }
+  </style>
+</head>
+<body>
+
+<div class="sticky-header">
+  <div class="navbar">
+    <div class="nav-brand">Pau <span>Analytics</span></div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../data-analytics.html" class="active">Case Studies</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero-medium">
+  <div class="container">
+    <span class="section-tag">Customer Retention</span>
+    <h1 style="margin-top:0.75rem;">How a Gym Trainer Stopped Members from Quitting</h1>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<section class="section section-cream">
+  <div class="container">
+    <article class="article-body">
+      <section class="case-study-content">
+                <p>Marcus ran a small gym with 200 members. Business looked stable, but every month a handful of members quietly stopped showing up. Some came regularly for weeks, then vanished. Others started strong but faded fast. Marcus spent hours guessing who might quit, but by the time he noticed, they were already gone. He needed a way to spot the warning signs earlier.</p>
+
+                <p>Marcus pulled his member data—visit frequency, workout duration, calories burned, and age for each person. He looked at patterns for members who stayed versus those who left. The numbers showed something clear. Members who visited less frequently were far more likely to quit. The correlation was strong—minus 0.85. Workout duration, calories burned, and age barely mattered. Visit frequency was the signal he'd been missing.</p>
+
+                <p>When Marcus checked the data more closely, he found two distinct groups. Most members visited regularly and showed stable habits—they were safe. A smaller group rarely came in and had inconsistent workouts. These members were already halfway out the door. The model predicted risk with perfect accuracy on this dataset because the patterns were so clear. Members who visited frequently almost never quit. Members who visited rarely almost always did.</p>
+
+                <p>Marcus tested how much risk changed when visits dropped. For members who came 8 to 12 times a month, losing just three visits was a red flag. They were the most sensitive to changes—still engaged but slipping. Members who already visited very little stayed high-risk regardless. Members who came often stayed safe even if they missed a session or two. The middle group needed the most attention.</p>
+
+                <p>Short workouts only mattered when paired with fewer visits. A member coming in for 20 minutes instead of 60 wasn't a problem if they showed up regularly. But when attendance dropped and sessions got shorter, it signaled someone losing interest. Marcus realized he needed to watch both behaviors together, not separately.</p>
+
+                <p>Age didn't predict much. Training habits mattered 30 times more than how old someone was. Marcus had been assuming younger members were more committed and older ones more likely to quit. The data proved him wrong. Behavior told the story—attendance and engagement, not demographics.</p>
+
+                <p>Marcus made three changes. First, he started tracking attendance weekly and flagged anyone with a drop of three or more visits. Second, he reached out to members with risk scores above 0.50—a quick check-in, a class invitation, or a simple plan to get them back on track. Third, he stopped guessing based on age or appearance and focused only on what the data showed: visit frequency and workout consistency.</p>
+
+                <p>Within two months, Marcus caught members earlier. A few appreciated the nudge and came back. Others admitted they'd been busy but needed the reminder. Some still quit—data couldn't stop everyone. But Marcus now knew exactly who to focus on each week. His follow-ups became more targeted, his time better spent. He stopped reacting to departures and started preventing them. The data didn't solve retention completely, but it gave him a clear system to work from.</p>
+            </section>
+    </article>
+  </div>
+</section>
+
+<!-- DASHBOARD & AI ASSISTANT -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Explore the Data</span>
+      <h2>Dashboard &amp; AI Assistant</h2>
+    </div>
+    <div style="background:var(--dark); border-radius:var(--radius); padding:2.5rem; text-align:center; max-width:700px; margin:0 auto;">
+      <h3 style="color:var(--white); margin-bottom:1rem;">Explore the interactive dashboard or ask the AI assistant your own questions.</h3>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="../dashboard/predicting-gym-member-dropout.html" class="btn btn-primary" target="_blank">View Dashboard →</a>
+        <a href="../agentic_workflow/predicting-gym-member-dropout.html" class="btn btn-outline" target="_blank" style="color:var(--white); border-color:rgba(255,255,255,0.3);">Open AI Assistant →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-gold cta-strip">
+  <div class="container">
+    <h2>Want This Kind of Analysis for Your Business?</h2>
+    <p>Tell us the question you're trying to answer. We'll tell you what's possible.</p>
+    <a href="../contact.html" class="btn btn-dark">Start a Conversation</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand-name">Pau <span>Analytics</span></div>
+      <p class="tagline">"Every decision deserves better data."</p>
+      <p>Data analytics consulting for Malaysian SMEs — reports, dashboards, and AI assistants.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Work</h5>
+      <ul>
+        <li><a href="../data-analytics.html">Case Studies</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../faq.html">FAQ</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="https://lyven81.github.io/pau-ai/" target="_blank">Pau AI ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Pau Analytics</span>
+    <span><a href="../privacy-policy.html">Privacy Policy</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
