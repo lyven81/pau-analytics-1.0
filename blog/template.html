@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{POST TITLE}} | Pau Analytics Blog</title>
+  <link rel="canonical" href="https://www.pauanalytics.com/blog/{{SLUG}}.html" />
+  <meta name="description" content="{{META DESCRIPTION}}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .post-body { font-size: 1.05rem; color: var(--text); line-height: 1.85; }
+    .post-body h2 { font-size: 1.5rem; color: var(--brown); margin: 2rem 0 0.75rem; }
+    .post-body h3 { font-size: 1.15rem; color: var(--brown); margin: 1.5rem 0 0.6rem; }
+    .post-body p { margin-bottom: 1.25rem; }
+    .post-body ul, .post-body ol { margin: 0 0 1.25rem 1.5rem; }
+    .post-body li { margin-bottom: 0.5rem; line-height: 1.75; }
+    .post-body strong { color: var(--brown); }
+    .post-body blockquote {
+      border-left: 3px solid var(--gold);
+      padding: 0.75rem 1.5rem;
+      margin: 1.5rem 0;
+      background: var(--alt);
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      color: var(--brown-mid);
+    }
+    .sidebar { position: sticky; top: 100px; }
+    .sidebar-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+    .sidebar-card h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .sidebar-related a {
+      display: block;
+      font-size: 0.875rem;
+      color: var(--gold);
+      font-weight: 600;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: color var(--transition);
+    }
+    .sidebar-related a:last-child { border-bottom: none; }
+    .sidebar-related a:hover { color: var(--gold-hover); }
+  </style>
+</head>
+<body>
+
+<div class="sticky-header">
+  <div class="navbar">
+    <div class="nav-brand">Pau <span>Analytics</span></div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../data-analytics.html">Case Studies</a>
+      <a href="index.html" class="active">Blog</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero-medium">
+  <div class="container">
+    <span class="section-tag">{{CATEGORY}}</span>
+    <h1 style="margin-top:0.75rem;">{{POST TITLE}}</h1>
+    <p style="margin-top:0.5rem; font-size:0.9rem; color:rgba(255,255,255,0.55);">Published {{DATE}}</p>
+  </div>
+</section>
+
+<!-- POST BODY -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="two-col" style="align-items:start; gap:4rem;">
+
+      <!-- Article -->
+      <article class="post-body">
+        <!-- REPLACE BELOW WITH ACTUAL POST CONTENT -->
+        <p>{{INTRODUCTION PARAGRAPH}}</p>
+        <h2>{{SECTION 1 HEADING}}</h2>
+        <p>{{SECTION 1 CONTENT}}</p>
+        <h2>{{SECTION 2 HEADING}}</h2>
+        <p>{{SECTION 2 CONTENT}}</p>
+        <blockquote>{{KEY INSIGHT OR QUOTE}}</blockquote>
+        <h2>{{SECTION 3 HEADING}}</h2>
+        <p>{{SECTION 3 CONTENT}}</p>
+        <h2>What This Means for Your Business</h2>
+        <p>{{CLOSING PARAGRAPH WITH NEXT STEPS}}</p>
+        <!-- END POST CONTENT -->
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-card">
+          <h4>Written By</h4>
+          <p style="font-size:0.875rem; color:var(--muted); line-height:1.65;">Lee Yih Ven — data analyst and founder of Pau Analytics. Helping Malaysian SMEs turn business data into clear decisions.</p>
+        </div>
+        <div class="sidebar-card sidebar-related">
+          <h4>Related Posts</h4>
+          <a href="{{RELATED POST 1 SLUG}}.html">{{RELATED POST 1 TITLE}}</a>
+          <a href="{{RELATED POST 2 SLUG}}.html">{{RELATED POST 2 TITLE}}</a>
+          <a href="{{RELATED POST 3 SLUG}}.html">{{RELATED POST 3 TITLE}}</a>
+        </div>
+        <div class="sidebar-card" style="text-align:center;">
+          <h4>Want This Analysis for Your Business?</h4>
+          <a href="../contact.html" class="btn btn-primary" style="width:100%; text-align:center; margin-top:0.5rem;">Talk to Us →</a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="section-gold cta-strip">
+  <div class="container">
+    <h2>Found This Useful?</h2>
+    <p>Browse the case studies to see this kind of analysis applied to real business problems.</p>
+    <a href="../data-analytics.html" class="btn btn-dark">See Our Case Studies</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand-name">Pau <span>Analytics</span></div>
+      <p class="tagline">"Every decision deserves better data."</p>
+      <p>Data analytics consulting for Malaysian SMEs — reports, dashboards, and AI assistants.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Work</h5>
+      <ul>
+        <li><a href="../data-analytics.html">Case Studies</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li><a href="../pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../faq.html">FAQ</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="https://lyven81.github.io/pau-ai/" target="_blank">Pau AI ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Pau Analytics</span>
+    <span><a href="../privacy-policy.html">Privacy Policy</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

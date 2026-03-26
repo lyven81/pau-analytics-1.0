@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{CASE STUDY TITLE}} | Pau Analytics</title>
+  <link rel="canonical" href="https://www.pauanalytics.com/case-study/{{SLUG}}.html" />
+  <meta name="description" content="{{META DESCRIPTION}}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .analysis-steps { counter-reset: step-counter; }
+    .analysis-step {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      align-items: flex-start;
+    }
+    .analysis-step-num {
+      width: 44px;
+      height: 44px;
+      background: var(--gold);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .analysis-step-body h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 0.4rem;
+    }
+    .analysis-step-body p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .demo-box {
+      background: var(--dark);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .demo-box img {
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      width: 100%;
+      max-height: 320px;
+      object-fit: cover;
+    }
+    .demo-box h3 {
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .demo-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<div class="sticky-header">
+  <div class="navbar">
+    <div class="nav-brand">Pau <span>Analytics</span></div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../data-analytics.html" class="active">Case Studies</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero-medium">
+  <div class="container">
+    <span class="section-tag">{{CATEGORY}}</span>
+    <h1 style="margin-top:0.75rem;">{{CASE STUDY TITLE}}</h1>
+    <p style="margin-top:0.5rem;">{{ONE-LINE CLIENT CONTEXT}}</p>
+  </div>
+</section>
+
+<!-- SITUATION -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="section-header" style="text-align:left;">
+      <span class="section-tag">The Situation</span>
+      <h2>{{SITUATION HEADING}}</h2>
+    </div>
+    <div class="two-col" style="align-items:start;">
+      <div>
+        <p style="font-size:1rem; color:var(--muted); line-height:1.8; margin-bottom:1.25rem;">{{SITUATION PARAGRAPH 1}}</p>
+        <p style="font-size:1rem; color:var(--muted); line-height:1.8;">{{SITUATION PARAGRAPH 2}}</p>
+      </div>
+      <div class="facts-card">
+        <h4>Quick Facts</h4>
+        <div class="fact-row"><span class="fact-label">Industry</span><span class="fact-value">{{INDUSTRY}}</span></div>
+        <div class="fact-row"><span class="fact-label">Dataset</span><span class="fact-value">{{DATASET SIZE}}</span></div>
+        <div class="fact-row"><span class="fact-label">Timeframe</span><span class="fact-value">{{TIMEFRAME}}</span></div>
+        <div class="fact-row"><span class="fact-label">Analysis Type</span><span class="fact-value">{{ANALYSIS TYPE}}</span></div>
+        <div class="fact-row"><span class="fact-label">Tools Used</span><span class="fact-value">{{TOOLS}}</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANALYSIS -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:left;">
+      <span class="section-tag">The Analysis</span>
+      <h2>How We Approached the Problem</h2>
+    </div>
+    <div class="analysis-steps" style="max-width:700px;">
+      <div class="analysis-step">
+        <div class="analysis-step-num">1</div>
+        <div class="analysis-step-body">
+          <h4>{{ANALYSIS STEP 1 TITLE}}</h4>
+          <p>{{ANALYSIS STEP 1 DESCRIPTION}}</p>
+        </div>
+      </div>
+      <div class="analysis-step">
+        <div class="analysis-step-num">2</div>
+        <div class="analysis-step-body">
+          <h4>{{ANALYSIS STEP 2 TITLE}}</h4>
+          <p>{{ANALYSIS STEP 2 DESCRIPTION}}</p>
+        </div>
+      </div>
+      <div class="analysis-step">
+        <div class="analysis-step-num">3</div>
+        <div class="analysis-step-body">
+          <h4>{{ANALYSIS STEP 3 TITLE}}</h4>
+          <p>{{ANALYSIS STEP 3 DESCRIPTION}}</p>
+        </div>
+      </div>
+      <div class="analysis-step">
+        <div class="analysis-step-num">4</div>
+        <div class="analysis-step-body">
+          <h4>{{ANALYSIS STEP 4 TITLE}}</h4>
+          <p>{{ANALYSIS STEP 4 DESCRIPTION}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY FINDINGS -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Key Findings</span>
+      <h2>What the Data Revealed</h2>
+    </div>
+    <div class="three-col">
+      <div class="card card-gold-top">
+        <h3>{{FINDING 1 TITLE}}</h3>
+        <p>{{FINDING 1 DESCRIPTION}}</p>
+      </div>
+      <div class="card card-gold-top">
+        <h3>{{FINDING 2 TITLE}}</h3>
+        <p>{{FINDING 2 DESCRIPTION}}</p>
+      </div>
+      <div class="card card-gold-top">
+        <h3>{{FINDING 3 TITLE}}</h3>
+        <p>{{FINDING 3 DESCRIPTION}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT THE BUSINESS DID -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">The Outcome</span>
+      <h2>What the Business Did Next</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h4>{{ACTION 1 TITLE}}</h4>
+        <p>{{ACTION 1 DESCRIPTION}}</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h4>{{ACTION 2 TITLE}}</h4>
+        <p>{{ACTION 2 DESCRIPTION}}</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h4>{{ACTION 3 TITLE}}</h4>
+        <p>{{ACTION 3 DESCRIPTION}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD & AI ASSISTANT (remove section if not applicable) -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Explore the Data</span>
+      <h2>Dashboard &amp; AI Assistant</h2>
+    </div>
+    <div class="demo-box" style="max-width:700px; margin:0 auto;">
+      <img src="{{DASHBOARD SCREENSHOT URL}}" alt="{{CASE STUDY TITLE}} Dashboard" />
+      <h3>Explore the interactive dashboard or ask the AI assistant your own questions.</h3>
+      <div class="demo-buttons">
+        <a href="{{DASHBOARD URL}}" class="btn btn-primary" target="_blank">View Dashboard →</a>
+        <a href="{{AI ASSISTANT URL}}" class="btn btn-outline" target="_blank" style="color:var(--white); border-color:rgba(255,255,255,0.3);">Open AI Assistant →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="section-gold cta-strip">
+  <div class="container">
+    <h2>Want This Kind of Analysis for Your Business?</h2>
+    <p>Tell us the question you're trying to answer. We'll tell you what's possible.</p>
+    <a href="../contact.html" class="btn btn-dark">Start a Conversation</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand-name">Pau <span>Analytics</span></div>
+      <p class="tagline">"Every decision deserves better data."</p>
+      <p>Data analytics consulting for Malaysian SMEs — reports, dashboards, and AI assistants.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Work</h5>
+      <ul>
+        <li><a href="../data-analytics.html">Case Studies</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../faq.html">FAQ</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="https://lyven81.github.io/pau-ai/" target="_blank">Pau AI ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Pau Analytics</span>
+    <span><a href="../privacy-policy.html">Privacy Policy</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
