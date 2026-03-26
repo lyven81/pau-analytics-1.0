@@ -918,7 +918,7 @@ h1, h2, h3, h4 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .pricing-card {
@@ -930,6 +930,8 @@ h1, h2, h3, h4 {
   box-shadow: var(--shadow-sm);
   transition: transform var(--transition), box-shadow var(--transition);
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .pricing-card:hover {
@@ -996,6 +998,7 @@ h1, h2, h3, h4 {
 .pricing-features {
   list-style: none;
   margin-bottom: 1.75rem;
+  flex-grow: 1;
 }
 
 .pricing-features li {
