@@ -11,56 +11,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
   <style>
-    .analysis-steps { counter-reset: step-counter; }
-    .analysis-step {
-      display: flex;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-      align-items: flex-start;
-    }
-    .analysis-step-num {
-      width: 44px;
-      height: 44px;
-      background: var(--gold);
-      color: var(--white);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-    .analysis-step-body h4 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--brown);
-      margin-bottom: 0.4rem;
-    }
-    .analysis-step-body p {
-      font-size: 0.92rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-    .demo-box {
-      background: var(--dark);
-      border-radius: var(--radius);
-      padding: 2.5rem;
-      text-align: center;
-    }
-    .demo-box img {
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-      width: 100%;
-      max-height: 320px;
-      object-fit: cover;
-    }
-    .demo-box h3 {
-      color: var(--white);
-      margin-bottom: 1rem;
-    }
-    .demo-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .article-body { font-size: 1.05rem; color: var(--text); line-height: 1.85; max-width: 780px; margin: 0 auto; }
+    .article-body p { margin-bottom: 1.25rem; }
+    .article-body h2 { font-size: 1.4rem; color: var(--brown); margin: 2rem 0 0.75rem; }
+    .article-body h3 { font-size: 1.15rem; color: var(--brown); margin: 1.5rem 0 0.6rem; }
+    .article-body ul, .article-body ol { margin: 0 0 1.25rem 1.5rem; }
+    .article-body li { margin-bottom: 0.5rem; line-height: 1.75; }
+    .article-body strong { color: var(--brown); }
+    .article-body img { max-width: 100%; border-radius: 8px; margin: 1.5rem 0; }
   </style>
 </head>
 <body>
@@ -84,122 +42,38 @@
   <div class="container">
     <span class="section-tag">{{CATEGORY}}</span>
     <h1 style="margin-top:0.75rem;">{{CASE STUDY TITLE}}</h1>
-    <p style="margin-top:0.5rem;">{{ONE-LINE CLIENT CONTEXT}}</p>
   </div>
 </section>
 
-<!-- SITUATION -->
+<!-- ARTICLE -->
 <section class="section section-cream">
   <div class="container">
-    <div class="section-header" style="text-align:left;">
-      <span class="section-tag">The Situation</span>
-      <h2>{{SITUATION HEADING}}</h2>
-    </div>
-    <div class="two-col" style="align-items:start;">
-      <div>
-        <p style="font-size:1rem; color:var(--muted); line-height:1.8; margin-bottom:1.25rem;">{{SITUATION PARAGRAPH 1}}</p>
-        <p style="font-size:1rem; color:var(--muted); line-height:1.8;">{{SITUATION PARAGRAPH 2}}</p>
-      </div>
-      <div class="facts-card">
-        <h4>Quick Facts</h4>
-        <div class="fact-row"><span class="fact-label">Industry</span><span class="fact-value">{{INDUSTRY}}</span></div>
-        <div class="fact-row"><span class="fact-label">Dataset</span><span class="fact-value">{{DATASET SIZE}}</span></div>
-        <div class="fact-row"><span class="fact-label">Timeframe</span><span class="fact-value">{{TIMEFRAME}}</span></div>
-        <div class="fact-row"><span class="fact-label">Analysis Type</span><span class="fact-value">{{ANALYSIS TYPE}}</span></div>
-        <div class="fact-row"><span class="fact-label">Tools Used</span><span class="fact-value">{{TOOLS}}</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+    <article class="article-body">
+      <!-- NARRATIVE CONTENT — use these 3 headings to structure the story -->
 
-<!-- ANALYSIS -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-header" style="text-align:left;">
-      <span class="section-tag">The Analysis</span>
-      <h2>How We Approached the Problem</h2>
-    </div>
-    <div class="analysis-steps" style="max-width:700px;">
-      <div class="analysis-step">
-        <div class="analysis-step-num">1</div>
-        <div class="analysis-step-body">
-          <h4>{{ANALYSIS STEP 1 TITLE}}</h4>
-          <p>{{ANALYSIS STEP 1 DESCRIPTION}}</p>
-        </div>
-      </div>
-      <div class="analysis-step">
-        <div class="analysis-step-num">2</div>
-        <div class="analysis-step-body">
-          <h4>{{ANALYSIS STEP 2 TITLE}}</h4>
-          <p>{{ANALYSIS STEP 2 DESCRIPTION}}</p>
-        </div>
-      </div>
-      <div class="analysis-step">
-        <div class="analysis-step-num">3</div>
-        <div class="analysis-step-body">
-          <h4>{{ANALYSIS STEP 3 TITLE}}</h4>
-          <p>{{ANALYSIS STEP 3 DESCRIPTION}}</p>
-        </div>
-      </div>
-      <div class="analysis-step">
-        <div class="analysis-step-num">4</div>
-        <div class="analysis-step-body">
-          <h4>{{ANALYSIS STEP 4 TITLE}}</h4>
-          <p>{{ANALYSIS STEP 4 DESCRIPTION}}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      {{PARAGRAPH 1 — introduce the client and their problem}}
 
-<!-- KEY FINDINGS -->
-<section class="section section-cream">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Key Findings</span>
-      <h2>What the Data Revealed</h2>
-    </div>
-    <div class="three-col">
-      <div class="card card-gold-top">
-        <h3>{{FINDING 1 TITLE}}</h3>
-        <p>{{FINDING 1 DESCRIPTION}}</p>
-      </div>
-      <div class="card card-gold-top">
-        <h3>{{FINDING 2 TITLE}}</h3>
-        <p>{{FINDING 2 DESCRIPTION}}</p>
-      </div>
-      <div class="card card-gold-top">
-        <h3>{{FINDING 3 TITLE}}</h3>
-        <p>{{FINDING 3 DESCRIPTION}}</p>
-      </div>
-    </div>
-  </div>
-</section>
+      {{PARAGRAPH 2 — what prompted them to look at the data}}
 
-<!-- WHAT THE BUSINESS DID -->
-<section class="section section-dark">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">The Outcome</span>
-      <h2>What the Business Did Next</h2>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-number">1</div>
-        <h4>{{ACTION 1 TITLE}}</h4>
-        <p>{{ACTION 1 DESCRIPTION}}</p>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <h4>{{ACTION 2 TITLE}}</h4>
-        <p>{{ACTION 2 DESCRIPTION}}</p>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <h4>{{ACTION 3 TITLE}}</h4>
-        <p>{{ACTION 3 DESCRIPTION}}</p>
-      </div>
-    </div>
+      <h2>What the Data Showed</h2>
+
+      {{PARAGRAPH 3 — first key finding from the analysis}}
+
+      {{PARAGRAPH 4 — second finding or deeper pattern}}
+
+      {{PARAGRAPH 5 — additional insight or surprise in the data}}
+
+      <h2>What Changed</h2>
+
+      {{PARAGRAPH 6 — what the client did differently based on the findings}}
+
+      {{PARAGRAPH 7 — specific actions taken}}
+
+      <h2>The Result</h2>
+
+      {{PARAGRAPH 8 — measurable outcome and current state}}
+
+    </article>
   </div>
 </section>
 
@@ -210,12 +84,11 @@
       <span class="section-tag">Explore the Data</span>
       <h2>Dashboard &amp; AI Assistant</h2>
     </div>
-    <div class="demo-box" style="max-width:700px; margin:0 auto;">
-      <img src="{{DASHBOARD SCREENSHOT URL}}" alt="{{CASE STUDY TITLE}} Dashboard" />
-      <h3>Explore the interactive dashboard or ask the AI assistant your own questions.</h3>
-      <div class="demo-buttons">
-        <a href="{{DASHBOARD URL}}" class="btn btn-primary" target="_blank">View Dashboard →</a>
-        <a href="{{AI ASSISTANT URL}}" class="btn btn-outline" target="_blank" style="color:var(--white); border-color:rgba(255,255,255,0.3);">Open AI Assistant →</a>
+    <div style="background:var(--dark); border-radius:var(--radius); padding:2.5rem; text-align:center; max-width:700px; margin:0 auto;">
+      <h3 style="color:var(--white); margin-bottom:1rem;">Explore the interactive dashboard or ask the AI assistant your own questions.</h3>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="../dashboard/{{SLUG}}.html" class="btn btn-primary" target="_blank">View Dashboard →</a>
+        <a href="../agentic_workflow/{{SLUG}}.html" class="btn btn-outline" target="_blank" style="color:var(--white); border-color:rgba(255,255,255,0.3);">Open AI Assistant →</a>
       </div>
     </div>
   </div>
